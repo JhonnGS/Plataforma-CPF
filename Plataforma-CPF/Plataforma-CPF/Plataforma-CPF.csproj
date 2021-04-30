@@ -62,6 +62,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -119,11 +121,75 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\VerifySesion.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Actividades.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Administrador.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Alumnos.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Directores.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntregasTareas.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Examenes.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Maestros.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Materias.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mochila.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelBD.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBD.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelBD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelBD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBD.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PreguntasExamen.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RespuestasAlumno.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tareas.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tutores.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuarios.cs">
+      <DependentUpon>ModelBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewModels\AccountViewModel.cs" />
+    <Compile Include="Models\ViewModels\RecoveryPasswordViewModel.cs" />
+    <Compile Include="Models\ViewModels\RecoveryViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IUsuarioRepository.cs" />
+    <Compile Include="Repositories\UsuarioRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -132,9 +198,44 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\form.css" />
+    <Content Include="Content\Pal\assets\css\fontawesome-all.min.css" />
+    <Content Include="Content\Pal\assets\css\images\overlay.png" />
+    <Content Include="Content\Pal\assets\css\main.css" />
+    <Content Include="Content\Pal\assets\css\noscript.css" />
+    <Content Include="Content\Pal\assets\js\breakpoints.min.js" />
+    <Content Include="Content\Pal\assets\js\browser.min.js" />
+    <Content Include="Content\Pal\assets\js\jquery.min.js" />
+    <Content Include="Content\Pal\assets\js\jquery.scrollex.min.js" />
+    <Content Include="Content\Pal\assets\js\jquery.scrolly.min.js" />
+    <Content Include="Content\Pal\assets\js\main.js" />
+    <Content Include="Content\Pal\assets\js\util.js" />
+    <Content Include="Content\Pal\assets\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\Pal\assets\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\Pal\assets\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\Pal\images\foto_nino.jpg" />
+    <Content Include="Content\Pal\images\logo-mascota.svg" />
+    <Content Include="Content\Pal\images\logo.svg" />
+    <Content Include="Content\Pal\images\logocpf.svg" />
+    <Content Include="Content\Pal\images\pic01.jpg" />
+    <Content Include="Content\Pal\images\pic02.jpg" />
+    <Content Include="Content\Pal\images\pic03.jpg" />
+    <Content Include="Content\Pal\images\pic04.jpg" />
+    <Content Include="Content\Pal\images\pic05.jpg" />
+    <Content Include="Content\Pal\images\pic06.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\ModelBD.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelBD.edmx</DependentUpon>
+      <LastGenOutput>ModelBD.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelBD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelBD.edmx</DependentUpon>
+      <LastGenOutput>ModelBD.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -158,6 +259,56 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\Pal\assets\sass\base\_page.scss" />
+    <Content Include="Content\Pal\assets\sass\base\_reset.scss" />
+    <Content Include="Content\Pal\assets\sass\base\_typography.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_actions.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_box.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_button.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_features.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_form.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_icon.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_icons.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_image.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_list.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_row.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_section.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_spotlight.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_statistics.scss" />
+    <Content Include="Content\Pal\assets\sass\components\_table.scss" />
+    <Content Include="Content\Pal\assets\sass\layout\_footer.scss" />
+    <Content Include="Content\Pal\assets\sass\layout\_header.scss" />
+    <Content Include="Content\Pal\assets\sass\layout\_main.scss" />
+    <Content Include="Content\Pal\assets\sass\layout\_nav.scss" />
+    <Content Include="Content\Pal\assets\sass\layout\_wrapper.scss" />
+    <Content Include="Content\Pal\assets\sass\libs\_breakpoints.scss" />
+    <Content Include="Content\Pal\assets\sass\libs\_functions.scss" />
+    <Content Include="Content\Pal\assets\sass\libs\_html-grid.scss" />
+    <Content Include="Content\Pal\assets\sass\libs\_mixins.scss" />
+    <Content Include="Content\Pal\assets\sass\libs\_vars.scss" />
+    <Content Include="Content\Pal\assets\sass\libs\_vendor.scss" />
+    <Content Include="Content\Pal\assets\sass\main.scss" />
+    <Content Include="Content\Pal\assets\sass\noscript.scss" />
+    <Content Include="Content\Pal\assets\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\Pal\assets\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\Pal\assets\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\Pal\assets\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\Pal\assets\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\Pal\assets\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\Pal\assets\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\Pal\assets\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\Pal\assets\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\Pal\assets\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\Pal\assets\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\Pal\assets\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\Pal\images\Inscripción.pdf" />
+    <EntityDeploy Include="Models\ModelBD.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelBD.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelBD.edmx.diagram">
+      <DependentUpon>ModelBD.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -240,6 +391,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\Val.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -266,10 +418,18 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Aviso.cshtml" />
     <Content Include="Views\Home\Bienvenido.cshtml" />
+    <Content Include="Views\Account\StartRecovery.cshtml" />
+    <Content Include="Views\Account\Recovery.cshtml" />
+    <Content Include="Views\Account\RA.cshtml" />
+    <Content Include="Views\Account\IdentificarAdmin.cshtml" />
+    <Content Include="Views\Account\RAD.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\RM.cshtml" />
+    <Content Include="Views\Account\RT.cshtml" />
+    <Content Include="Views\Account\RD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -281,6 +441,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
