@@ -237,7 +237,6 @@
     <Content Include="Content\startmin\css\timeline.css" />
     <Content Include="Content\startmin\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\startmin\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\startmin\index.html" />
     <Content Include="Content\startmin\js\bootstrap.min.js" />
     <Content Include="Content\startmin\js\dataTables\dataTables.bootstrap.min.js" />
     <Content Include="Content\startmin\js\dataTables\jquery.dataTables.min.js" />
@@ -266,19 +265,6 @@
     <Content Include="Content\startmin\js\morris.min.js" />
     <Content Include="Content\startmin\js\raphael.min.js" />
     <Content Include="Content\startmin\js\startmin.js" />
-    <Content Include="Content\startmin\pages\blank.html" />
-    <Content Include="Content\startmin\pages\buttons.html" />
-    <Content Include="Content\startmin\pages\flot.html" />
-    <Content Include="Content\startmin\pages\forms.html" />
-    <Content Include="Content\startmin\pages\grid.html" />
-    <Content Include="Content\startmin\pages\icons.html" />
-    <Content Include="Content\startmin\pages\index.html" />
-    <Content Include="Content\startmin\pages\login.html" />
-    <Content Include="Content\startmin\pages\morris.html" />
-    <Content Include="Content\startmin\pages\notifications.html" />
-    <Content Include="Content\startmin\pages\panels-wells.html" />
-    <Content Include="Content\startmin\pages\tables.html" />
-    <Content Include="Content\startmin\pages\typography.html" />
     <Content Include="Content\startmin\TEMPLATE.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -366,9 +352,35 @@
     <Content Include="Models\ModelBD.edmx.diagram">
       <DependentUpon>ModelBD.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\startmin\.git\config" />
+    <Content Include="Content\startmin\.git\description" />
+    <Content Include="Content\startmin\.git\HEAD" />
+    <Content Include="Content\startmin\.git\hooks\applypatch-msg.sample" />
+    <Content Include="Content\startmin\.git\hooks\commit-msg.sample" />
+    <Content Include="Content\startmin\.git\hooks\fsmonitor-watchman.sample" />
+    <Content Include="Content\startmin\.git\hooks\post-update.sample" />
+    <Content Include="Content\startmin\.git\hooks\pre-applypatch.sample" />
+    <Content Include="Content\startmin\.git\hooks\pre-commit.sample" />
+    <Content Include="Content\startmin\.git\hooks\pre-merge-commit.sample" />
+    <Content Include="Content\startmin\.git\hooks\pre-push.sample" />
+    <Content Include="Content\startmin\.git\hooks\pre-rebase.sample" />
+    <Content Include="Content\startmin\.git\hooks\pre-receive.sample" />
+    <Content Include="Content\startmin\.git\hooks\prepare-commit-msg.sample" />
+    <Content Include="Content\startmin\.git\hooks\update.sample" />
+    <Content Include="Content\startmin\.git\index" />
+    <Content Include="Content\startmin\.git\info\exclude" />
+    <Content Include="Content\startmin\.git\logs\HEAD" />
+    <Content Include="Content\startmin\.git\logs\refs\heads\master" />
+    <Content Include="Content\startmin\.git\logs\refs\remotes\origin\HEAD" />
+    <Content Include="Content\startmin\.git\objects\pack\pack-b3275077c42ca0b259e67cac6392bfb387185fa0.idx" />
+    <Content Include="Content\startmin\.git\objects\pack\pack-b3275077c42ca0b259e67cac6392bfb387185fa0.pack" />
+    <Content Include="Content\startmin\.git\packed-refs" />
+    <Content Include="Content\startmin\.git\refs\heads\master" />
+    <Content Include="Content\startmin\.git\refs\remotes\origin\HEAD" />
     <Content Include="Content\startmin\.vs\config\applicationhost.config" />
     <Content Include="Content\startmin\.vs\ProjectSettings.json" />
     <Content Include="Content\startmin\.vs\slnx.sqlite" />
+    <Content Include="Content\startmin\.vs\startmin\v15\.suo" />
     <Content Include="Content\startmin\.vs\VSWorkspaceState.json" />
     <Content Include="Content\startmin\composer.json" />
     <Content Include="Content\startmin\fonts\fontawesome-webfont.eot" />
@@ -501,13 +513,15 @@
     <Content Include="Views\Account\RT.cshtml" />
     <Content Include="Views\Account\RD.cshtml" />
     <Content Include="Views\Alumnos\_LayoutMA.cshtml" />
-    <Content Include="Views\Alumnos\Perfil.cshtml" />
     <Content Include="Views\Alumnos\Configuracion.cshtml" />
     <Content Include="Views\Alumnos\HomeA.cshtml" />
+    <Content Include="Views\Alumnos\APerfil.cshtml" />
+    <Content Include="Views\Alumnos\AConfiguracion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\startmin\.vs\startmin\v15\" />
+    <Folder Include="Content\startmin\.git\objects\info\" />
+    <Folder Include="Content\startmin\.git\refs\tags\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

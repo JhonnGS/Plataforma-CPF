@@ -77,7 +77,7 @@ namespace CPF_Plataforma.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Perfil([Bind(Include = "idUsuario,foto,usuario,correo,contraseña,perfil,status,TokenRecovery")] Usuarios usuario)
+        public ActionResult Perfil([Bind(Include = "idUsuario,usuario,correo,contraseña,perfil,status,TokenRecovery")] Usuarios usuario)
         {
             if (ModelState.IsValid)
             {
@@ -146,40 +146,60 @@ namespace CPF_Plataforma.Controllers
             }
 
             return View(Doc);
+        }    
+        
+        public ActionResult APerfil(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Usuarios u = db.Usuarios.Find(id);
+            if (u == null)
+            {
+                return HttpNotFound();
+            }
+            return View(u);
         }
 
-        // GET: CatAreas/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    CatAreas catAreas = db.CatAreasSet.Find(id);
-        //    if (catAreas == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(catAreas);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult APerfil([Bind(Include = "idUsuario,usuario,correo,contraseña,perfil,status,TokenRecovery")] Usuarios u)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(u).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("HomeA");
+            }
+            return View(u);
+        }
+        public ActionResult AConfiguracion(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Alumnos a = db.Alumnos.Find(id);
+            if (a == null)
+            {
+                return HttpNotFound();
+            }
+            return View(a);
+        }
 
-        // POST: CatAreas/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "id_area,nombre,descripcion,responsable,correo,estatus")] CatAreas catAreas)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(catAreas).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(catAreas);
-        //}
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AConfiguracion([Bind(Include = "idAlumno,nombre,app,apm,sexo,direccion,telefono,idUsuario,seccion,grado,grupo")] Alumnos a)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(a).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("HomeA");
+            }
+            return View(a);
+        }
         // GET: CatAreas/Delete/5
         //public ActionResult Delete(int? id)
         //{
@@ -274,7 +294,7 @@ namespace CPF_Plataforma.Controllers
             Session["nombre"] = null;
             Session["UserA"] = null;
             ViewBag.M = "USTED HA SALIDO DE SU SESIÓN";
-            return RedirectToAction("Login", "Acount");
+            return RedirectToAction("Login", "Account");
         }
     }
 }

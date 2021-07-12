@@ -1,8 +1,8 @@
 ﻿@model Plataforma_CPF.Models.Usuarios
+
 @{
-    ViewBag.Title = "Perfil";
-    //Layout = null;
     Layout = "~/Views/Alumnos/_LayoutMA.cshtml";
+    //Layout = null;
 }
 
 <!DOCTYPE html>
@@ -10,13 +10,18 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>PERFIL DE USUARIO</title>
+    <title>APerfil</title>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>MI INICIO</title>
     <link rel="shortcut icon" type="/image/x-icon" href="~/Content/Pal/images/logocpf.svg" alt="" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <title>MI INICIO</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="~/Content/startmin/css/bootstrap.min.css" rel="stylesheet">
@@ -38,30 +43,38 @@
     <![endif]-->
 </head>
 <body>
-    <div id="wrapper">
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">DATOS DE PERFIL</h1>
-                    </div>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.idUsuario)
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                CAMBIANDO DATOS DE PERFIL
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="wrapper">
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">                        
+                        <br /><br />
+                        <div class="col-lg-12">
+                            <h1 class="page-header">DATOS DE PERFIL</h1>
+                        </div>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.idUsuario)
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        CAMBIANDO DATOS DE PERFIL
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            @Html.Label("FOTO DE PERFIL", htmlAttributes: new { @class = "control-label col-md-6" })
+                                            @Html.Label("MI PERFIL", htmlAttributes: new { @class = "control-label col-md-6" })
                                             <div class="col-md-10">
                                                 @Html.EditorFor(model => model.perfil, new { htmlAttributes = new { @class = "form-control", @disabled = "false" } })
                                                 @Html.ValidationMessageFor(model => model.perfil, "", new { @class = "text-danger" })
@@ -70,7 +83,7 @@
                                         <hr />
                                         <br /> <br />
                                         <div class="form-group">
-                                            @Html.Label("USUARIO", htmlAttributes: new { @class = "control-label col-md-6" })
+                                            @Html.Label("NOMBRE | USUARIO", htmlAttributes: new { @class = "control-label col-md-6" })
                                             <div class="col-md-10">
                                                 @Html.EditorFor(model => model.usuario, new { htmlAttributes = new { @class = "form-control", @disabled="false" } })
                                                 @Html.ValidationMessageFor(model => model.usuario, "", new { @class = "text-danger" })
@@ -81,7 +94,7 @@
                                     <!-- /.col-lg-6 (nested) -->
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            @Html.Label("CORREO", htmlAttributes: new { @class = "control-label col-md-6" })
+                                            @Html.Label("MI CORREO", htmlAttributes: new { @class = "control-label col-md-6" })
                                             <div class="col-md-10">
                                                 @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
@@ -90,7 +103,7 @@
                                         <hr />
                                         <br /> <br />
                                         <div class="form-group">
-                                            @Html.Label("CONTRASEÑA", htmlAttributes: new { @class = "control-label col-md-6" })
+                                            @Html.Label("MI CONTRASEÑA", htmlAttributes: new { @class = "control-label col-md-6" })
                                             <div class="col-md-10">
                                                 @Html.EditorFor(model => model.contraseña, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.contraseña, "", new { @class = "text-danger" })
@@ -98,44 +111,27 @@
                                         </div>
                                     </div>
                                     <br />
-                                    <!-- /.col-lg-6 (nested) -->
-                                    @*<button type="submit" class="btn btn-default">ACTUALIZAR</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>*@
-                                    <div>
-                                        @* @Html.ActionLink("Back to List", "Index")*@
-                                    </div>
                                 </div>
                                 <!-- /.row (nested) -->
                                 <br /><br /><br>
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-success pull-right" style="width:120px; height:60px">ACTUALIZAR</button>
-                                    <button type="button" class="btn btn-info" style="width:120px; height:60px" onclick="location.href='@Url.Action("Back to list", "HomeA")';return false;">REGREASAR</button>
+                                    <button type="submit" class="btn btn-success pull-right" style="width:110px; height:40px">ACTUALIZAR</button>
+                                    <button type="button" class="btn btn-info" style="width:110px; height:40px" onclick="location.href='@Url.Action("HomeA", "HomeController")';return false;">REGREASAR</button>
                                 </div>
+                                    </div>
+                                    <!-- /.panel-body -->
+                                </div>
+                                <!-- /.panel -->
                             </div>
-                            <!-- /.panel-body -->
+                            <!-- /.col-lg-12 -->
                         </div>
-                        <!-- /.panel -->
                     </div>
-                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.row -->
+                <!-- /.container-fluid -->
             </div>
-            <!-- /.container-fluid -->
+            <!-- /#page-wrapper -->
         </div>
-        <!-- /#page-wrapper -->
-    </div>
-    <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="~/Content/startmin/js/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="~/Content/startmin/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="~/Content/startmin/js/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="~/Content/startmin/js/startmin.js"></script>
+    }
 
 </body>
 </html>
