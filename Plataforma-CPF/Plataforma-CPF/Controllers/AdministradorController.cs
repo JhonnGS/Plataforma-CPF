@@ -18,20 +18,19 @@ using System.Data.Entity.Validation;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.IO;
-
-namespace CPF_Plataforma.Controllers
+namespace Plataforma_CPF.Controllers
 {
-    public class AlumnosController : Controller
+    public class AdministradorController : Controller
     {
         private BDCPFORIEntities db = new BDCPFORIEntities();
         private IUsuarioRepository _repoUsuario;
 
-        public AlumnosController(IUsuarioRepository repository)
+        public AdministradorController(IUsuarioRepository repository)
         {
             _repoUsuario = repository;
         }
 
-        public AlumnosController() : this(new UsuarioRepository())
+        public AdministradorController() : this(new UsuarioRepository())
         {
 
         }
@@ -48,7 +47,7 @@ namespace CPF_Plataforma.Controllers
             }
         }
 
-        public ActionResult HomeA(int? mesg, int? id)
+        public ActionResult HomeAd(int? mesg, int? id)
         {
             return View();
         }
@@ -58,13 +57,13 @@ namespace CPF_Plataforma.Controllers
             var usuario = db.Usuarios.Include(u => u.perfil);
             return View(usuario.ToList());
         }
-                
+        
         public ActionResult Mochila(int? id)
         {
             //ViewBag.idAlumno = new SelectList(db.Usuarios, "idUsuario", "nombre");
             return View(db.Mochila.ToList());
         }
-        
+
         // GET: DocMochila/Create
         public ActionResult DocMochila()
         {
@@ -81,13 +80,13 @@ namespace CPF_Plataforma.Controllers
                 db.Mochila.Add(Doc);
                 db.SaveChanges();
 
-                return RedirectToAction("HomeA");
+                return RedirectToAction("HomeAd");
             }
 
             return View(Doc);
-        }    
-        
-        public ActionResult APerfil(int? id)
+        }
+
+        public ActionResult AdPerfil(int? id)
         {
             if (id == null)
             {
@@ -103,7 +102,7 @@ namespace CPF_Plataforma.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult APerfil([Bind(Include = "idUsuario,usuario,correo,contraseña,perfil,status,TokenRecovery")] Usuarios u)
+        public ActionResult AdPerfil([Bind(Include = "idUsuario,usuario,correo,contraseña,perfil,status,TokenRecovery")] Usuarios u)
         {
             if (ModelState.IsValid)
             {
@@ -113,57 +112,32 @@ namespace CPF_Plataforma.Controllers
             }
             return View(u);
         }
-        public ActionResult AConfiguracion(int? id)
+        public ActionResult ADConfiguracion(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alumnos a = db.Alumnos.Find(id);
-            if (a == null)
+            Administrador ad = db.Administrador.Find(id);
+            if (ad == null)
             {
                 return HttpNotFound();
             }
-            return View(a);
+            return View(ad);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AConfiguracion([Bind(Include = "idAlumno,nombre,app,apm,sexo,direccion,telefono,idUsuario,seccion,grado,grupo")] Alumnos a)
+        public ActionResult ADConfiguracion([Bind(Include = "idAdmin,nombre,app,apm,sexo,direccion,telefono,claveAdmin,idUsuario")] Administrador ad)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(a).State = EntityState.Modified;
+                db.Entry(ad).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("HomeA");
+                return RedirectToAction("HomeAd");
             }
-            return View(a);
+            return View(ad);
         }
-        // GET: CatAreas/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    CatAreas catAreas = db.CatAreasSet.Find(id);
-        //    if (catAreas == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(catAreas);
-        //}
-
-        // POST: CatAreas/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    CatAreas catAreas = db.CatAreasSet.Find(id);
-        //    db.CatAreasSet.Remove(catAreas);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         protected override void Dispose(bool disposing)
         {
@@ -172,66 +146,14 @@ namespace CPF_Plataforma.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public ActionResult Materia()
-        {
-            //ViewBag.idAlumno = new SelectList(db.Usuarios, "idUsuario", "nombre");
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult cargarMateria([Bind(Include = "idMateria,nombre")] Materias ma)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Materias.Add(ma);
-                db.SaveChanges();
-
-                return RedirectToAction("Materia");
-            }
-
-            return View(ma);
-        }
-
-        // GET: Alumnos/EditDatosE/5
-        public ActionResult EditDatosE(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Alumnos user = db.Alumnos.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-
-            ViewBag.Mess = "HOLA! ACONTINUACIÓN CAMBIAREMOS SUS DATOS ESCOLARES (NUEVO INICIO DE CLASE)";
-            return View(user);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditDatosE([Bind(Include = "idAlumno,nombre,app,apm,sexo,direccion,telefono,idUsuario,seccion,grado,grupo")] Alumnos usuario)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(usuario).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("HomeA");
-            }
-
-            return View(usuario);
-        }
-
+        }          
+               
         public ActionResult CerrarSesion()
         {
             //SessionHelper.DestroyUserSession();
-            Session["idAlumno"] = null;
+            Session["idAdministrador"] = null;
             Session["nombre"] = null;
-            Session["UserA"] = null;
+            Session["UserAd"] = null;
             ViewBag.M = "USTED HA SALIDO DE SU SESIÓN";
             return RedirectToAction("Login", "Account");
         }

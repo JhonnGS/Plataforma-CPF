@@ -141,7 +141,7 @@ namespace Plataforma_CPF.Controllers
                             {
                                 Usuarios oUserAD = lst.FirstOrDefault();
                                 Session["UserAD"] = oUserAD.usuario;
-                                return RedirectToAction("HomeAd", "Directores", new { mesg = 0 });
+                                return RedirectToAction("HomeAd", "Administrador", new { mesg = 0 });
                             }
                         }
                         //return Content("Bienvenido a su Home! ");
