@@ -68,7 +68,7 @@ namespace Plataforma_CPF.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, FormCollection frm)
+        public async Task<ActionResult> Login(LoginViewModel model, FormCollection frm, Usuarios objUser)
         {
             string E = frm["Email"];
             string pass = frm["password"];
@@ -103,18 +103,17 @@ namespace Plataforma_CPF.Controllers
                             if (lst.Count() > 0)
                             {
                                 Usuarios oUserA = lst.FirstOrDefault();
-                                Session["UserA"] = oUserA;
-                                Session["Nombre"] = oUserA.usuario;
-                                Session["idUs"] = oUserA.idUsuario;
+                                Session["UserA"] = oUserA.usuario;
                                 return RedirectToAction("HomeA", "Alumnos", new { mesg = 0 });
                             }
+
                         }
                         if (objUsuario.perfil == "MAERSTRO")
                         {
                             if (lst.Count() > 0)
                             {
                                 Usuarios oUserM = lst.FirstOrDefault();
-                                Session["UserM"] = oUserM;
+                                Session["UserM"] = oUserM.usuario;
                                 return RedirectToAction("", "maestros", new { mesg = 0 });
                             }
                         }
@@ -123,7 +122,7 @@ namespace Plataforma_CPF.Controllers
                             if (lst.Count() > 0)
                             {
                                 Usuarios oUserT = lst.FirstOrDefault();
-                                Session["UserT"] = oUserT;
+                                Session["UserT"] = oUserT.usuario;
                                 return RedirectToAction("", "tutor", new { mesg = 0 });
                             }
                         }
@@ -132,7 +131,7 @@ namespace Plataforma_CPF.Controllers
                             if (lst.Count() > 0)
                             {
                                 Usuarios oUserD = lst.FirstOrDefault();
-                                Session["UserD"] = oUserD;
+                                Session["UserD"] = oUserD.usuario;
                                 return RedirectToAction("HomeD", "Directores", new { mesg = 0 });
                             }
                         }
@@ -141,14 +140,14 @@ namespace Plataforma_CPF.Controllers
                             if (lst.Count() > 0)
                             {
                                 Usuarios oUserAD = lst.FirstOrDefault();
-                                Session["UserAD"] = oUserAD;
-                                Session["Nombre"] = oUserAD.usuario;
-                                return RedirectToAction("HomeAd", "Directores", new { mesg = 0 });
+                                Session["UserAD"] = oUserAD.usuario;
+                                return RedirectToAction("HomeAd", "Administrador", new { mesg = 0 });
                             }
                         }
                         //return Content("Bienvenido a su Home! ");
                     }
                 }
+                return View(objUser);
             }
             catch (Exception ex)
             {
