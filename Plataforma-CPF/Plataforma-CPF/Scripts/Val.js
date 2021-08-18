@@ -55,7 +55,7 @@ function Tel(input, id) {
 
     } else {
         document.getElementById(id).value = "";
-        InfoTime("Advertencia", "DEBE INGRESAR UN TELÉFONO CORRECTO");
+        InfoTime("Advertencia", "DEBE INGRESAR UN TELÉFONO CORRECTO (SOLO SE ACEPTAN NUMEROS)");
         return false;
     }
 }

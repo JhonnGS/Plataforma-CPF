@@ -65,7 +65,7 @@
             </div>
 
             <div class="form-group">
-                @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "input1", @type = "text", @placeholder = "* INGRESE SU TELÉFONO", @required = "true", @onchange = "ValidarND(this.value, this.id)", @onkeypress = "return cal(event)", @style = "color:gold" } })
+                @Html.EditorFor(model => model.Telephone, new { htmlAttributes = new { @class = "input1", @type = "text", @placeholder = "* INGRESE SU TELÉFONO", @required = "true", @onchange = "Tel(this.value, this.id)", @onkeypress = "return cal(event)", @style = "color:gold" } })
                 @Html.ValidationMessage("Telephone", "", new { @class = "text-danger" })
             </div>
 

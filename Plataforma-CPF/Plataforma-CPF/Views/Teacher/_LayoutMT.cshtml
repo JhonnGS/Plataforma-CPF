@@ -10,6 +10,9 @@
     <!-- favicon============================================ -->
     <link rel="shortcut icon" type="/image/x-icon" href="~/Content/Pal/images/logocpf.svg" alt="" />
 
+    <link rel="stylesheet" href="~/Content/form.css" />
+    <link rel="stylesheet" href="~/Content/forInterfaz.css" />
+
     <!-- Bootstrap Core CSS -->
     <link href="~/Content/startmin/css/bootstrap.min.css" rel="stylesheet">
 
@@ -45,7 +48,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="~/Directores/HomeD">PLATAFORMA | CPF</a>
+                <a class="navbar-brand oopcion" href="~/Teacher/HomeT" title="My Home">PLATAFORMA | CPF</a>
             </div>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -54,33 +57,33 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <ul class="nav navbar-nav navbar-left navbar-top-links">
-                <li><a href="~/Home/Index" title="Pagina de Inicio"><i class="fa fa-home fa-fw"></i> Website <img width="25" height="25" src="~/Content/Pal/images/logocpf.svg" alt="" title="Pagina de Inicio" /></a></li>
+            <ul class="nav navbar-nav navbar-left navbar-top-links OP2">
+                <li><a href="~/Home/Index" class="btn" title="Pagina de Inicio"><i class="fa fa-home fa-fw"></i> Website <img width="25" height="25" src="~/Content/Pal/images/logocpf.svg" alt="" title="Pagina de Inicio" /></a></li>
             </ul>
 
-            <ul class="nav navbar-right navbar-top-links">
+            <ul class="nav navbar-right navbar-top-links OP2">
 
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="btn dropdown-toggle oopcion" data-toggle="dropdown" href="#">
 
-                        @if (Session["UserD"] != null)
+                        @if (Session["UserM"] != null)
                         {
-                            <text> <i class="fa  fa-hand-spock-o fa-fw"></i> HOLA <i class="fa fa-angellist fa-fw"></i> << @Session["UserD"].ToString() >></text>
+                            <text> <i class="fa  fa-hand-spock-o fa-fw"></i> HOLA <i class="fa fa-angellist fa-fw"></i><< @Session["UserM"].ToString() >></text>
                         }
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
-                            <a href="~/Directores/DPerfil/1024 "><i class="fa fa-user fa-fw"></i> PERFIL DE USUARIO</a>
+                            <a href="~/Teacher/TPerfil/1 "><i class="fa fa-user fa-fw"></i> PERFIL DE USUARIO</a>
                         </li>
                         <li>
-                            <a href="~/Directores/DConfiguracion/1"><i class="fa fa-gear fa-fw"></i> CONFIGURACIÓN</a>
+                            <a href="~/Teacher/MConfiguracion/1"><i class="fa fa-gear fa-fw"></i> CONFIGURACIÓN</a>
                         </li>
                         <li class="divider">
 
                         </li>
                         <li>
-                            <a href="~/Directores/CerrarSesion"><i class="fa fa-sign-out fa-fw"></i> CERRAR SESIÓN</a>
+                            <a href="~/Teacher/CerrarSesion"><i class="fa fa-sign-out fa-fw"></i> CERRAR SESIÓN</a>
                         </li>
                     </ul>
                 </li>
@@ -94,53 +97,31 @@
 
                         </li>
                         <li>
-                            <a href="~/" class="active"><i class="fa fa-briefcase fa-fw"></i>MI MOCHILA</a>
+                            <a href="" class="active OP3"><i class="OP2 fa fa-briefcase fa-fw"></i>MI MOCHILA</a>
+                        </li>                        
+                        <li>
+                            <a href="" class="OP3"><i class="OP2 fa fa-calendar-plus-o fa-fw"></i>CALENDARIO | EVENTOS</a>
                         </li>
                         <li>
-
+                            <a href="" class="OP3"><i class="OP2 fa fa-edit fa-fw"></i>AGENDA | CREAR EVENTO</a>
                         </li>
                         <li>
-                            <a href="~/"><i class="fa fa-calendar-plus-o fa-fw"></i>CALENDARIO | EVENTOS</a>
-                        </li>
-                        <li>
-                            <a href="~/"><i class="fa fa-edit fa-fw"></i>AGENDA | CREAR EVENTO</a>
-                        </li>
-                        <li>
-                            <a href="~/"><i class="fa fa-wrench fa-fw"></i>HERRAMIENTAS</a>
+                            <a href="" class="OP3"><i class="OP2 fa fa-wrench fa-fw"></i>CREAR MATERIA</a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> LISTAS DE USUARIOS</a>
-                            <ul class="nav nav-second-level">
-                                @*<li>
-                                        <a href="#">X PERFIL</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">X SECCION</a>
-                                    </li>
-                                    <li>*@
-                                @*<a href="#">REPORTES <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">CALIFICACIONES</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">X GRADO</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">X GRUPO</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">COMPARACION DE USUARIOS</a>
-                                        </li>
-                                    </ul>*@
-                                <!-- /.nav-third-level -->
-                                @*</li>*@
-                            </ul>
+                            <a href="" class="OP3"><i class="OP2 fa fa-wrench fa-fw"></i>CREAR TAREA</a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
+                            <a href="" class="OP3"><i class="OP2 fa fa-wrench fa-fw"></i>CREAR EXAMEN</a>
                             <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="" class="OP3"><i class="OP2 fa fa-sitemap fa-fw"></i>LISTAR MATERIAS,TAREAS,EXAMEN</a>
+                        </li>
+                        <li>
+                            <a href="" class="OP3"><i class="OP2 fa fa-book fa-fw"></i>CALIFICACIONES</a>
                         </li>
                     </ul>
                 </div>

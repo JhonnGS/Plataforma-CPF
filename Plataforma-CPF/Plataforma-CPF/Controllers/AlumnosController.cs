@@ -85,60 +85,64 @@ namespace CPF_Plataforma.Controllers
             }
 
             return View(Doc);
-        }    
-        
+        }
+
         public ActionResult APerfil(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuarios u = db.Usuarios.Find(id);
-            if (u == null)
+            Usuarios usuarios = db.Usuarios.Find(id);
+            if (usuarios == null)
             {
                 return HttpNotFound();
             }
-            return View(u);
+            return View(usuarios);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult APerfil([Bind(Include = "idUsuario,usuario,correo,contraseña,perfil,status,TokenRecovery")] Usuarios u)
+        public ActionResult APerfil([Bind(Include = "idUsuario,usuario,correo,contraseña,perfil,status,TokenRecovery")] Usuarios usuarios)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(u).State = EntityState.Modified;
+                db.Entry(usuarios).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("HomeA");
             }
-            return View(u);
+            return View(usuarios);
         }
+                
         public ActionResult AConfiguracion(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alumnos a = db.Alumnos.Find(id);
-            if (a == null)
+            Alumnos alumnos = db.Alumnos.Find(id);
+            if (alumnos == null)
             {
                 return HttpNotFound();
             }
-            return View(a);
+            ViewBag.idUsuario = new SelectList(db.Usuarios, "idUsuario", "usuario", alumnos.idUsuario);
+            return View(alumnos);
         }
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AConfiguracion([Bind(Include = "idAlumno,nombre,app,apm,sexo,direccion,telefono,idUsuario,seccion,grado,grupo")] Alumnos a)
+        public ActionResult AConfiguracion([Bind(Include = "idAlumno,nombre,app,apm,sexo,direccion,telefono,idUsuario,seccion,grado,grupo")] Alumnos alumnos)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(a).State = EntityState.Modified;
+                db.Entry(alumnos).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("HomeA");
+                return RedirectToAction("Index");
             }
-            return View(a);
+            ViewBag.idUsuario = new SelectList(db.Usuarios, "idUsuario", "usuario", alumnos.idUsuario);
+            return View(alumnos);
         }
+
         // GET: CatAreas/Delete/5
         //public ActionResult Delete(int? id)
         //{

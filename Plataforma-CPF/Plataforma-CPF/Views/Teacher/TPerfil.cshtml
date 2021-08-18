@@ -1,7 +1,7 @@
 ﻿@model Plataforma_CPF.Models.Usuarios
 
 @{
-    Layout = "~/Views/Alumnos/_LayoutMA.cshtml";
+    Layout = "~/Views/Teacher/_LayoutMT.cshtml";
     //Layout = null;
 }
 
@@ -57,7 +57,7 @@
                     <div class="row">
                         <br /><br />
                         <div class="col-lg-12">
-                            <h1 class="page-header">DATOS DE PERFIL</h1>
+                            <h1 class="page-header">MIS DATOS DE PERFIL</h1>
                         </div>
                         <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -70,27 +70,26 @@
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
-
                                             <div class="form-group">
                                                 @Html.Label("MI NOMBRE DE USUARIO", htmlAttributes: new { @class = "control-label col-md-2" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.usuario, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "color:green" } })
+                                                    @Html.EditorFor(model => model.usuario, new { htmlAttributes = new { @class = "form-control", @style = "color:blue", @readonly = "readonly" } })
                                                     @Html.ValidationMessageFor(model => model.usuario, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                             <br /><br />
                                             <div class="form-group">
-                                                @Html.Label("MI CORREO", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                @Html.Label("MI CORREO ES", htmlAttributes: new { @class = "control-label col-md-2" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control", @style = "color:green" } })
+                                                    @Html.EditorFor(model => model.correo, new { htmlAttributes = new { @class = "form-control", @style = "color:blue" } })
                                                     @Html.ValidationMessageFor(model => model.correo, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                             <br /><br />
                                             <div class="form-group">
-                                                @Html.Label("MI CONTRASEÑA", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                @Html.Label("MI CONTRASEÑA ELEGIDA", htmlAttributes: new { @class = "control-label col-md-2" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.contraseña, new { htmlAttributes = new { @class = "form-control", @style = "color:green" } })
+                                                    @Html.EditorFor(model => model.contraseña, new { htmlAttributes = new { @class = "form-control", @style = "color:blue" } })
                                                     @Html.ValidationMessageFor(model => model.contraseña, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -98,49 +97,48 @@
                                             <div class="form-group">
                                                 @Html.Label("MI PERFIL DE USUARIO", htmlAttributes: new { @class = "control-label col-md-2" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.perfil, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "color:green" } })
+                                                    @Html.EditorFor(model => model.perfil, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "color:blue" } })
                                                     @Html.ValidationMessageFor(model => model.perfil, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                             <br /><br />
                                             <div class="form-group">
-                                                @Html.Label("MI STATUS ACTUAL", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                @Html.Label("MI ESTATUS ACTUAL", htmlAttributes: new { @class = "control-label col-md-2" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "color:green" } })
+                                                    @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "color:blue" } })
                                                     @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
                                             <br /><br />
                                             <div class="form-group">
-                                                @Html.Label("MI TOKEN DE RECUPERACIÒN DE LA CUENTA", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                @Html.Label("MI TOKEN DE RECUPERACIÒN", htmlAttributes: new { @class = "control-label col-md-2" })
                                                 <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.TokenRecovery, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "color:green" } })
+                                                    @Html.EditorFor(model => model.TokenRecovery, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "color:blue" } })
                                                     @Html.ValidationMessageFor(model => model.TokenRecovery, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
-                                            <br /><br />
                                         </div>
                                         <p class="otra-opcion">LOS CAMPOS INHABILITADOS SOLO LOS PUEDE CAMBIAR EL ADMINISTRADOR</p>
                                         <!-- /.row (nested) -->
                                         <br /><br /><br>
-                                                    <div class="box-footer">
-                                                        <button type="submit" class="btn btn-success pull-right" style="width:110px; height:40px">ACTUALIZAR</button>
-                                                        <button type="button" class="btn btn-info" style="background:#ffd800; width:110px; height:40px" onclick="location.href='@Url.Action("HomeA", "Alumnos")';return false;">REGREASAR</button>
-                                                    </div>
+                                        <div class="box-footer">
+                                            <button type="submit" class="btn btn-success pull-right" style="width:110px; height:40px">ACTUALIZAR</button>
+                                            <button type="button" class="btn btn-info" style="background:#ffd800; width:110px; height:40px" onclick="location.href='@Url.Action("HomeT", "Teacher")';return false;">REGREASAR</button>
+                                        </div>
                                     </div>
-                                        <!-- /.panel-body -->
-                                    </div>
-                                    <!-- /.panel -->
+                                    <!-- /.panel-body -->
                                 </div>
-                                <!-- /.col-lg-12 -->
+                                <!-- /.panel -->
                             </div>
+                            <!-- /.col-lg-12 -->
                         </div>
                     </div>
-                    <!-- /.container-fluid -->
                 </div>
-                <!-- /#page-wrapper -->
+                <!-- /.container-fluid -->
             </div>
-            }
+            <!-- /#page-wrapper -->
+        </div>
+    }
 
-    </body>
+</body>
 </html>

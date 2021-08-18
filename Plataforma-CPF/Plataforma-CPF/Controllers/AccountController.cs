@@ -108,13 +108,13 @@ namespace Plataforma_CPF.Controllers
                             }
 
                         }
-                        if (objUsuario.perfil == "MAERSTRO")
+                        if (objUsuario.perfil == "MAESTRO")
                         {
                             if (lst.Count() > 0)
                             {
                                 Usuarios oUserM = lst.FirstOrDefault();
                                 Session["UserM"] = oUserM.usuario;
-                                return RedirectToAction("", "maestros", new { mesg = 0 });
+                                return RedirectToAction("HomeT", "Teacher", new { mesg = 0 });
                             }
                         }
                         if (objUsuario.perfil == "TUTOR")

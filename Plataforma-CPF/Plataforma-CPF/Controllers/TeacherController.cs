@@ -21,22 +21,22 @@ using System.IO;
 
 namespace Plataforma_CPF.Controllers
 {
-    public class DirectoresController : Controller
+    public class TeacherController : Controller
     {
         private BDCPFORIEntities db = new BDCPFORIEntities();
         private IUsuarioRepository _repoUsuario;
 
-        public DirectoresController(IUsuarioRepository repository)
+        public TeacherController(IUsuarioRepository repository)
         {
             _repoUsuario = repository;
         }
 
-        public DirectoresController() : this(new UsuarioRepository())
+        public TeacherController() : this(new UsuarioRepository())
         {
 
         }
 
-        public ActionResult _LayoutMD(int? id)
+        public ActionResult _LayoutMT(int? id)
         {
             if (Session["idUs"] != null)
             {
@@ -48,7 +48,7 @@ namespace Plataforma_CPF.Controllers
             }
         }
 
-        public ActionResult HomeD(int? mesg, int? id)
+        public ActionResult HomeT(int? mesg, int? id)
         {
             return View();
         }
@@ -57,90 +57,64 @@ namespace Plataforma_CPF.Controllers
         {
             var usuario = db.Usuarios.Include(u => u.perfil);
             return View(usuario.ToList());
-        }
+        }        
 
-        public ActionResult Mochila(int? id)
-        {
-            //ViewBag.idAlumno = new SelectList(db.Usuarios, "idUsuario", "nombre");
-            return View(db.Mochila.ToList());
-        }
-
-        // GET: DocMochila/Create
-        public ActionResult DocMochila()
-        {
-            //ViewBag.idAlumno = new SelectList(db.Usuarios, "idUsuario", "nombre");
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult DocMochila([Bind(Include = "idMochila,nombre,elemento,fecha_subido,descripcion,status,idUsuario")] Mochila Doc)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Mochila.Add(Doc);
-                db.SaveChanges();
-
-                return RedirectToAction("HomeAd");
-            }
-
-            return View(Doc);
-        }
-
-        public ActionResult APerfil(int? id)
+        public ActionResult TPerfil(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuarios usuarios = db.Usuarios.Find(id);
-            if (usuarios == null)
+            Usuarios u = db.Usuarios.Find(id);
+            if (u == null)
             {
                 return HttpNotFound();
             }
-            return View(usuarios);
+            return View(u);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult APerfil([Bind(Include = "idUsuario,usuario,correo,contraseña,perfil,status,TokenRecovery")] Usuarios usuarios)
+        public ActionResult TPerfil([Bind(Include = "idUsuario,usuario,correo,contraseña,perfil,status,TokenRecovery")] Usuarios u)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(usuarios).State = EntityState.Modified;
+                db.Entry(u).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("HomeA");
+                return RedirectToAction("HomeT");
             }
-            return View(usuarios);
+            return View(u);
         }
 
-        public ActionResult AConfiguracion(int? id)
+       
+        public ActionResult MConfiguracion(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alumnos alumnos = db.Alumnos.Find(id);
-            if (alumnos == null)
+            Maestros m = db.Maestros.Find(id);
+            if (m == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idUsuario = new SelectList(db.Usuarios, "idUsuario", "usuario", alumnos.idUsuario);
-            return View(alumnos);
+            ViewBag.idUsuario = new SelectList(db.Usuarios, "idUsuario", "usuario", m.idUsuario);
+            return View(m);
         }
-
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AConfiguracion([Bind(Include = "idAlumno,nombre,app,apm,sexo,direccion,telefono,idUsuario,seccion,grado,grupo")] Alumnos alumnos)
+        public ActionResult MConfiguracion([Bind(Include = "idMaestro,nombre,app,apm,sexo,direccion,telefono,seccion,idUsuario")] Maestros m)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(alumnos).State = EntityState.Modified;
+                db.Entry(m).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idUsuario = new SelectList(db.Usuarios, "idUsuario", "usuario", alumnos.idUsuario);
-            return View(alumnos);
+            ViewBag.idUsuario = new SelectList(db.Usuarios, "idUsuario", "usuario", m.idUsuario);
+            return View(m);
         }
 
         protected override void Dispose(bool disposing)
@@ -157,7 +131,7 @@ namespace Plataforma_CPF.Controllers
             //SessionHelper.DestroyUserSession();
             Session["idDirectores"] = null;
             Session["nombre"] = null;
-            Session["UserD"] = null;
+            Session["UserM"] = null;
             ViewBag.M = "USTED HA SALIDO DE SU SESIÓN";
             return RedirectToAction("Login", "Account");
         }

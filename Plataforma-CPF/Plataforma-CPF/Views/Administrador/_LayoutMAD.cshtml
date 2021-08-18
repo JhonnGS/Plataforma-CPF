@@ -45,7 +45,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="~/Alumnos/HomeA">PLATAFORMA | CPF</a>
+                <a class="navbar-brand" href="~/Administrador/HomeAd">PLATAFORMA | CPF</a>
             </div>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -63,15 +63,15 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 
-                        @if (Session["UserA"] != null)
+                        @if (Session["UserAD"] != null)
                         {
-                            <text> <i class="fa  fa-hand-spock-o fa-fw"></i> HOLA <i class="fa fa-angellist fa-fw"></i> - <i class="fa fa-paw fa-fw"></i><< @Session["UserA"].ToString() >><i class="fa fa-reddit-alien fa-fw"></i></text>
+                            <text> <i class="fa  fa-hand-spock-o fa-fw"></i> HOLA <i class="fa fa-angellist fa-fw"></i> << @Session["UserAD"].ToString() >></text>
                         }
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
-                            <a href="~/Administrador/ADPerfil/1 "><i class="fa fa-user fa-fw"></i> PERFIL DE USUARIO</a>
+                            <a href="~/Administrador/ADPerfil/1002 "><i class="fa fa-user fa-fw"></i> PERFIL DE USUARIO</a>
                         </li>
                         <li>
                             <a href="~/Administrador/ADConfiguracion/1"><i class="fa fa-gear fa-fw"></i> CONFIGURACIÓN</a>
@@ -107,7 +107,7 @@
                         </li>
                         <li>
                             <a href="~/"><i class="fa fa-wrench fa-fw"></i>HERRAMIENTAS</a>
-                            <!-- /.nav-second-level -->
+                            
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> LISTAS DE USUARIOS</a>
@@ -139,7 +139,7 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
+                        @*<li>
                             <a href="" class="otra-opcion"><i class="fa fa-files-o fa-fw"></i> + OPCIÓNES<span class="fa fa-chevron-circle-down fa-fw"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -155,8 +155,7 @@
 
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
             </div>
